@@ -46,7 +46,7 @@ fn parse_pgn_game(game_input: &str) -> PgnGame {
         let position = tokens.next();
 
         if position.is_none() {
-            break
+            break;
         }
 
         moves.push(PgnMove::parse(position.expect("neeee")));

@@ -25,7 +25,9 @@ pub struct PgnMove {
 
 impl PgnMove {
     pub fn parse(input: &str) -> Self {
-        Self{ position: input.to_string() }
+        Self {
+            position: input.to_string(),
+        }
     }
 }
 
