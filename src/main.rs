@@ -1,8 +1,8 @@
 mod pgn_parse;
 mod structs;
 
-use crate::structs::{ChessApiResponse, Pgn};
-use crate::pgn_parse::parse_game;
+use pgn_parse::parse_game;
+use structs::{ChessApiResponse, Pgn};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -12,5 +12,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?;
     println!("{:#?}", resp);
     let games = resp.games.iter().map(parse_game).collect::<Vec<Pgn>>();
+    println!("{:?}", games);
     Ok(())
 }
