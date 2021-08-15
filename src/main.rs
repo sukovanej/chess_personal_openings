@@ -1,8 +1,10 @@
 mod pgn_parse;
 mod structs;
+mod openings_finder;
 
 use pgn_parse::parse_game;
 use structs::{ChessApiResponse, Pgn};
+use openings_finder::find_openings;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -10,8 +12,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .await?
         .json::<ChessApiResponse>()
         .await?;
-    println!("{:#?}", resp);
+
     let games = resp.games.iter().map(parse_game).collect::<Vec<Pgn>>();
-    println!("{:?}", games);
+    let openings = find_openings(games, 4);
+
+    for opening in openings {
+        println!("{:?}", opening);
+    }
     Ok(())
 }

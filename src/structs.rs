@@ -20,7 +20,7 @@ pub type PgnGame = Vec<PgnMove>;
 
 #[derive(Debug, PartialEq)]
 pub struct PgnMove {
-    position: String,
+    pub position: String,
 }
 
 impl PgnMove {

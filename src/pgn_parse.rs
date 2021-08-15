@@ -37,13 +37,11 @@ pub fn parse_pgn(pgn_input: &String) -> Pgn {
 }
 
 fn parse_pgn_game(game_input: &str) -> PgnGame {
-    let mut lines: Vec<&str> = vec![];
-
     let mut tokens = game_input.split(" ");
     let mut moves = vec![];
 
     loop {
-        let number = tokens.next(); // skip number
+        tokens.next(); // skip number
 
         let position = tokens.next();
 
